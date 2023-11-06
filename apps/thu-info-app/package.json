@@ -10,7 +10,7 @@
 		"test": "jest",
 		"lint": "eslint src --ext .js,.jsx,.ts,.tsx",
 		"fix": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
-		"preversion": "yarn lint && yarn test",
+		"preversion": "node -e \"require('editor')('release-notes.md')\" && git add release-notes.md && yarn lint && yarn test",
 		"version": "node .increment.js"
 	},
 	"dependencies": {
