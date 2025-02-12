@@ -92,6 +92,18 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode npmVersionCode
         versionName npmVersionName
+        /**
+         * Workaround for Windows issue with long path
+         *
+         * If you are developing on a Windows machine, you may encounter an issue where ninja can't resolve path over 260 characters.
+         * Enable long path on Windows, download ninja>=1.12.0 and uncomment the following part as a workaround.
+         * For more information, see https://github.com/ninja-build/ninja/issues/1900#issuecomment-1817532728
+         */
+        externalNativeBuild {
+            cmake {
+                arguments "-DCMAKE_MAKE_PROGRAM=D:\\Programs\\ninja\\ninja.exe", "-DCMAKE_OBJECT_PATH_MAX=1024"
+            }
+        }
     }
     buildFeatures {
         buildConfig true
